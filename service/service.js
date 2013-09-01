@@ -72,13 +72,25 @@ app.all('*', function(req, res, next){
 	if(enableCORS){
         headers["access-control-allow-origin"] = "*";
     }
-                
+    
+    // Option 1           
     res.writeHead(
         "200",
         "OK",
         headers
     );
-                
+   
+    /* 
+    // Option 2 - omit phase string
+	res.writeHead(
+        200,
+        headers
+    );
+    
+    // Option 3 - use separate functions
+    res.statusCode = 200;
+    res.setHeader("access-control-allow-origin", origin);
+      */           
     // Close out the response.
 	return( res.end( responseBody ) );
 });
